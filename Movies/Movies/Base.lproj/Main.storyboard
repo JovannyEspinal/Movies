@@ -1,26 +1,99 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vzE-zF-NA5">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="tne-QT-ifu">
+        <scene sceneID="zAa-nw-SmA">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vzE-zF-NA5" customClass="ViewController" customModule="Movies" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
-                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                        <viewControllerLayoutGuide type="top" id="bsU-hg-Em3"/>
+                        <viewControllerLayoutGuide type="bottom" id="aQW-uA-JBH"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                    <view key="view" contentMode="scaleToFill" id="bjy-Sa-95Z">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Search" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cC4-t6-jGn">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mds-Qn-RfH">
+                                <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="5c0-qg-gom">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Mds-Qn-RfH" firstAttribute="top" secondItem="cC4-t6-jGn" secondAttribute="bottom" constant="8" id="Qvq-Nu-DwG"/>
+                            <constraint firstItem="5c0-qg-gom" firstAttribute="top" secondItem="Mds-Qn-RfH" secondAttribute="bottom" constant="8" id="Y74-fV-5a0"/>
+                            <constraint firstItem="cC4-t6-jGn" firstAttribute="centerX" secondItem="bjy-Sa-95Z" secondAttribute="centerX" id="b51-H8-3ES"/>
+                            <constraint firstItem="5c0-qg-gom" firstAttribute="centerX" secondItem="bjy-Sa-95Z" secondAttribute="centerX" id="bzn-fz-gLn"/>
+                            <constraint firstItem="Mds-Qn-RfH" firstAttribute="leading" secondItem="bjy-Sa-95Z" secondAttribute="leadingMargin" id="n4P-E4-6Te"/>
+                            <constraint firstItem="5c0-qg-gom" firstAttribute="width" secondItem="Mds-Qn-RfH" secondAttribute="width" id="qjw-IS-f8q"/>
+                            <constraint firstItem="cC4-t6-jGn" firstAttribute="top" secondItem="bsU-hg-Em3" secondAttribute="bottom" id="sbh-Yw-zgb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Mds-Qn-RfH" secondAttribute="trailing" id="wOx-Up-7DR"/>
+                            <constraint firstItem="aQW-uA-JBH" firstAttribute="top" secondItem="5c0-qg-gom" secondAttribute="bottom" id="xBu-nG-oAE">
+                                <variation key="heightClass=regular-widthClass=compact" constant="16"/>
+                            </constraint>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="cC4-t6-jGn"/>
+                                <exclude reference="Mds-Qn-RfH"/>
+                                <exclude reference="5c0-qg-gom"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="xBu-nG-oAE"/>
+                                <exclude reference="wOx-Up-7DR"/>
+                                <exclude reference="n4P-E4-6Te"/>
+                                <exclude reference="Qvq-Nu-DwG"/>
+                                <exclude reference="b51-H8-3ES"/>
+                                <exclude reference="sbh-Yw-zgb"/>
+                                <exclude reference="Y74-fV-5a0"/>
+                                <exclude reference="bzn-fz-gLn"/>
+                                <exclude reference="qjw-IS-f8q"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="cC4-t6-jGn"/>
+                                <include reference="Mds-Qn-RfH"/>
+                                <include reference="5c0-qg-gom"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="xBu-nG-oAE"/>
+                                <include reference="wOx-Up-7DR"/>
+                                <include reference="n4P-E4-6Te"/>
+                                <include reference="Qvq-Nu-DwG"/>
+                                <include reference="b51-H8-3ES"/>
+                                <include reference="sbh-Yw-zgb"/>
+                                <include reference="Y74-fV-5a0"/>
+                                <include reference="bzn-fz-gLn"/>
+                                <include reference="qjw-IS-f8q"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="5c0-qg-gom" id="D4K-MB-Ohu"/>
+                        <outlet property="textField" destination="Mds-Qn-RfH" id="xRY-b3-7dA"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XGH-ji-dNL" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="558" y="444"/>
         </scene>
     </scenes>
 </document>
