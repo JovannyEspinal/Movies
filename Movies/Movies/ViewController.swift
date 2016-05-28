@@ -9,13 +9,18 @@
 import UIKit
 import ReactiveCocoa
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var textField: UITextField!
     @IBOutlet weak var tableView: UITableView!
     
+    lazy var movieResult = [[String: AnyObject]]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.dataSource = self
+        
         textField.rac_textSignal()
             .filter( { (input) -> Bool in
                 let text = input as! String
@@ -30,7 +35,11 @@ class ViewController: UIViewController {
             })
             .deliverOn(RACScheduler.mainThreadScheduler())
             .subscribeNext({ (input) -> Void in
-                print(input)
+                let result = input as! [String:AnyObject]
+                
+                self.movieResult = result["results"] as! [[String:AnyObject]]
+                
+                self.tableView.reloadData()
                 }, error: { (error) -> Void in
                     let alertController = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .Alert)
                     
@@ -40,6 +49,19 @@ class ViewController: UIViewController {
                     
                     self.presentViewController(alertController, animated: true, completion: nil)
             })
+        
+        self.rac_signalForSelector(#selector(UITableViewDelegate.tableView(_:didSelectRowAtIndexPath:)), fromProtocol: UITableViewDelegate.self)
+            .subscribeNext { (input) -> Void in
+                let arguments = input as! RACTuple
+                
+                let indexPath = arguments.second as! NSIndexPath
+                
+                let title = self.movieResult[indexPath.row]["original_title"] as! String
+                
+                print("You have chosen the move: \(title)")
+            }
+        
+        tableView.delegate = self   
     }
     
     func signalForQuery(query: String) -> RACSignal {
@@ -74,6 +96,22 @@ class ViewController: UIViewController {
             })
             
         })
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return movieResult.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var cell = tableView.dequeueReusableCellWithIdentifier("cell")
+        
+        if cell == nil {
+            cell = UITableViewCell(style: .Default, reuseIdentifier: "cell")
+        }
+        
+        cell?.textLabel?.text = movieResult[indexPath.row]["original_title"] as? String
+        
+        return cell!
     }
 }
 
